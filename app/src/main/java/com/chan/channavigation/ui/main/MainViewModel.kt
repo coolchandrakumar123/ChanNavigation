@@ -1,4 +1,4 @@
-package com.chan.chantoolbar.ui.main
+package com.chan.channavigation.ui.main
 
 import androidx.lifecycle.ViewModel
 

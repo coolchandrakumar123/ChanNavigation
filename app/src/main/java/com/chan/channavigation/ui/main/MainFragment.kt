@@ -1,4 +1,4 @@
-package com.chan.chantoolbar.ui.main
+package com.chan.channavigation.ui.main
 
 import android.graphics.Color
 import android.graphics.Rect
@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.chan.chantoolbar.R
+import com.chan.channavigation.R
 import android.widget.Toast
 
 

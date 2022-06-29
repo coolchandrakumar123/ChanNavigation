@@ -1,18 +1,15 @@
-package com.chan.chantoolbar.ui.main
+package com.chan.channavigation.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuProvider
-import com.chan.chantoolbar.R
+import com.chan.channavigation.R
 
 
 class ToolbarFragment : Fragment() {
@@ -42,32 +39,10 @@ class ToolbarFragment : Fragment() {
         toolbar.addView(TextView(requireContext()).apply {
             //setImageResource(android.R.drawable.ic_menu_compass)
             text = "En"
+            textSize = 20f
             layoutParams = Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT).apply {
                 gravity = Gravity.END
             }
-        })
-        toolbar.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.add(0, 103, 2, "More").apply {
-                    setIcon(android.R.drawable.ic_menu_edit)
-                    setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
-                }
-                menu.add(0, 104, 3, "Settings").apply {
-                    setIcon(android.R.drawable.ic_menu_edit)
-                    setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
-                }
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                val text = when(menuItem.itemId) {
-                    103 -> "More"
-                    104 -> "Settings"
-                    else -> ""
-                }
-                Toast.makeText(requireContext(), "$text Clicked", Toast.LENGTH_SHORT).show()
-                return true
-            }
-
         })
         /*toolbar.addView(ImageView(requireContext()).apply {
             setImageResource(android.R.drawable.ic_menu_compass)
@@ -79,7 +54,7 @@ class ToolbarFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        /*menu.add(0, 101, 0, "edit").apply {
+        menu.add(0, 101, 0, "edit").apply {
             setIcon(android.R.drawable.ic_menu_edit)
             setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
         }
@@ -97,7 +72,7 @@ class ToolbarFragment : Fragment() {
         menu.add(0, 104, 3, "Settings").apply {
             setIcon(android.R.drawable.ic_menu_edit)
             setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
-        }*/
+        }
         super.onCreateOptionsMenu(menu, inflater)
     }
 

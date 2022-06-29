@@ -1,4 +1,4 @@
-package com.chan.chantoolbar
+package com.chan.channavigation
 
 import org.junit.Test
 

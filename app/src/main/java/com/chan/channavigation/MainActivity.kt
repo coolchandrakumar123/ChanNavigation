@@ -1,8 +1,8 @@
-package com.chan.chantoolbar
+package com.chan.channavigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.chan.chantoolbar.ui.main.MainFragment
+import com.chan.channavigation.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
