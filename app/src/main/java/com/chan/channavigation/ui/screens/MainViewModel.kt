@@ -1,4 +1,4 @@
-package com.chan.channavigation.ui.main
+package com.chan.channavigation.ui.screens
 
 import androidx.lifecycle.ViewModel
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?colorOnPrimary"
-    tools:context=".ui.main.MainFragment">
+    tools:context=".ui.screens.MainFragment">
 
     <LinearLayout
         android:id="@+id/toolbar"
@@ -21,7 +21,7 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Custom Toolbar"
+            android:text="Main Fragment"
             android:textSize="24sp"
             android:textColor="?colorSecondary"
             android:paddingHorizontal="16dp"
@@ -32,40 +32,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_compass"
-            android:layout_gravity="center_vertical"
-            app:tint="?colorSecondary"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
-            android:layout_gravity="center_vertical" />
-
-        <ImageView
-            android:id="@+id/deleteIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_delete"
-            android:layout_gravity="center_vertical"/>
-
-        <ImageView
-            android:id="@+id/moreIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_more"
-            android:layout_gravity="center_vertical"/>
-
     </LinearLayout>
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toolbar Fragment"
+        android:text="Navigate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
