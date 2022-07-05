@@ -25,12 +25,6 @@ class MainFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*requireView().findNavController().backQueue.forEach {
-            Log.d("ChanLog", "MainFragment - Route: ${it.destination.route} ")
-        }*/
-        /*requireView().findNavController().currentDestination?.route?.let {
-            checkAndRemoveGroup(navController = requireView().findNavController(), screenGroup = it)
-        }*/
     }
 
 }

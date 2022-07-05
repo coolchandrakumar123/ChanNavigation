@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.chan.channavigation.R
 import com.chan.channavigation.ui.UIManager
 import com.chan.channavigation.ui.navigation.Screen
+import com.chan.channavigation.ui.navigation.checkAndRemoveGroup
 import com.chan.channavigation.ui.navigation.navigateTo
 
 /**
@@ -33,14 +34,28 @@ abstract class BaseFragment: Fragment() {
             navigateToNextDestination()
         }
         requireView().findViewById<TextView?>(R.id.title)?.text = screen?.screenName?:"Screen"
-        if(screen?.applyPassOn == true) {
+        if(screen?.applyPassOn == true && !viewModel.passOnApplied) {
+            viewModel.passOnApplied = true
             //passOn
+            requireView().findNavController().backQueue.removeLastOrNull()
             navigateToNextDestination()
         }
 
-        if(screen?.viaPassOn == true) {
+        if(screen?.removeGroup == true && !viewModel.removeGroupApplied) {
+            requireView().findNavController().currentDestination?.route?.let {
+                checkAndRemoveGroup(navController = requireView().findNavController(), screenGroup = it)
+            }
+        }
+
+        /*if(screen?.viaPassOn == true && !viewModel.viaPassOnApplied) {
+            viewModel.viaPassOnApplied = true
             //passOn
-            requireView().findNavController().backQueue.removeLastOrNull()
+            requireView().findNavController().backQueue.apply {
+                remove(this[lastIndex-1])
+            }
+        }*/
+        requireView().findNavController().backQueue.forEach {
+            Log.d("ChanLog", "Route: ${it.destination.route} ")
         }
     }
 

@@ -16,7 +16,7 @@ fun View.navigateTo(route: String) {
     )
 }
 
-data class Screen(val screenId: Int, val screenType: ScreenType, val screenName: String, val screenGroup: String, val navigation: String, var applyPassOn: Boolean = false, var viaPassOn: Boolean = false)
+data class Screen(val screenId: Int, val screenType: ScreenType, val screenName: String, val screenGroup: String, val navigation: String, var applyPassOn: Boolean = false, var removeGroup: Boolean = false)
 
 enum class ScreenType{
     MAIN, LIST, DETAIL, NAV_DRAWER

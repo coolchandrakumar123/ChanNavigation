@@ -28,14 +28,16 @@ object UIManager {
             screenType = ScreenType.MAIN,
             screenName = "KBCategory",
             screenGroup = "KB",
-            navigation = "KBSubCategory"
+            navigation = "KBSubCategory",
+            applyPassOn = true
         ),
         Screen(
             screenId = 102,
             screenType = ScreenType.LIST,
             screenName = "KBSubCategory",
             screenGroup = "KB",
-            navigation = "KBDetail"
+            navigation = "KBDetail",
+            removeGroup = true
         ),
         Screen(
             screenId = 103,

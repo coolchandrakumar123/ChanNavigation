@@ -1,6 +1,7 @@
 package com.chan.channavigation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.chan.channavigation.ui.UIManager
 import com.chan.channavigation.ui.navigation.Screen
@@ -20,5 +21,10 @@ class MainActivity : AppCompatActivity() {
             navigation = "KBCategory"
         )
         ))
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Log.d("ChanLog", "Activity: onBackPressed ")
     }
 }
