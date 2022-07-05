@@ -26,7 +26,7 @@ class NavDrawerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        UIManager.buildScreens(childFragmentManager, R.id.container, "KBCategory")
+        UIManager.buildScreens(childFragmentManager, R.id.container, "KBCategory", UIManager.allScreenList)
     }
 
 }

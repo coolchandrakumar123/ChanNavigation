@@ -28,9 +28,9 @@ class MainFragment : BaseFragment() {
         /*requireView().findNavController().backQueue.forEach {
             Log.d("ChanLog", "MainFragment - Route: ${it.destination.route} ")
         }*/
-        requireView().findNavController().currentDestination?.route?.let {
+        /*requireView().findNavController().currentDestination?.route?.let {
             checkAndRemoveGroup(navController = requireView().findNavController(), screenGroup = it)
-        }
+        }*/
     }
 
 }

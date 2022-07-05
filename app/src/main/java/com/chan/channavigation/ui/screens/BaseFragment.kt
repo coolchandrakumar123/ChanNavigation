@@ -33,6 +33,15 @@ abstract class BaseFragment: Fragment() {
             navigateToNextDestination()
         }
         requireView().findViewById<TextView?>(R.id.title)?.text = screen?.screenName?:"Screen"
+        if(screen?.applyPassOn == true) {
+            //passOn
+            navigateToNextDestination()
+        }
+
+        if(screen?.viaPassOn == true) {
+            //passOn
+            requireView().findNavController().backQueue.removeLastOrNull()
+        }
     }
 
     fun navigateToNextDestination() {

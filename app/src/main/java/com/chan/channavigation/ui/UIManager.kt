@@ -24,13 +24,6 @@ object UIManager {
 
     val allScreenList = arrayListOf(
         Screen(
-            screenId = 1011,
-            screenType = ScreenType.NAV_DRAWER,
-            screenName = "KBNavDrawer",
-            screenGroup = "KB",
-            navigation = "KBCategory"
-        ),
-        Screen(
             screenId = 101,
             screenType = ScreenType.MAIN,
             screenName = "KBCategory",
@@ -74,26 +67,26 @@ object UIManager {
         ),
     )
 
-    internal fun buildScreens(fragmentManager: FragmentManager, @IdRes containerId: Int, startScreen: String?) {
+    internal fun buildScreens(fragmentManager: FragmentManager, @IdRes containerId: Int, startScreen: String?, screenList: ArrayList<Screen>) {
         (fragmentManager.findFragmentById(containerId) as? NavHostFragment?)?.let {
-            prepareNavigation(it, startScreen)
+            prepareNavigation(it, startScreen, screenList)
         }?: kotlin.run {
             val navHostFragment = NavHostFragment()
             fragmentManager.beginTransaction()
                 .replace(containerId, navHostFragment)
                 .commitNow()
-            prepareNavigation(navHostFragment, startScreen)
+            prepareNavigation(navHostFragment, startScreen, screenList)
         }
     }
 
-    private fun prepareNavigation(navHostFragment: NavHostFragment, startScreen: String?) {
+    private fun prepareNavigation(navHostFragment: NavHostFragment, startScreen: String?, screenList: ArrayList<Screen>) {
         val navController = navHostFragment.navController //findNavController(R.id.nav_host_fragment)
         navController.enableOnBackPressed(true)
         navController.graph = navController.createGraph(
-            startDestination = startScreen?: allScreenList.first().screenName
+            startDestination = startScreen?: screenList.first().screenName
         ) {
             //fragment<MainFragment>("mainFragment")
-            allScreenList.forEach { screen ->
+            screenList.forEach { screen ->
                 customFragment(route = screen.screenName, fragmentClass = getFragment(screenType = screen.screenType)) {
                     label = screen.screenGroup
                 }
