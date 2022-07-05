@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.chan.channavigation.R
+import com.chan.channavigation.ui.navigation.checkAndRemoveGroup
 
 
 class MainFragment : BaseFragment() {
@@ -27,25 +28,8 @@ class MainFragment : BaseFragment() {
         /*requireView().findNavController().backQueue.forEach {
             Log.d("ChanLog", "MainFragment - Route: ${it.destination.route} ")
         }*/
-        /*requireView().findNavController().currentDestination?.route?.let {
-            checkAndRemoveGroup(screenGroup = it)
-        }*/
-    }
-
-    /**
-     * Select And Remove Groups
-     */
-    private fun checkAndRemoveGroup(screenGroup: String) {
-        requireView().findNavController().backQueue.apply {
-            find { it.destination.route == screenGroup }?.destination?.label?.let { currentScreenGroup ->
-                for (index in (lastIndex - 1) downTo 0) {
-                    val navBackStackEntry = this[index]
-                    navBackStackEntry.updateState()
-                    if(currentScreenGroup == navBackStackEntry.destination.label) {
-                        this.remove(navBackStackEntry)
-                    }
-                }
-            }
+        requireView().findNavController().currentDestination?.route?.let {
+            checkAndRemoveGroup(navController = requireView().findNavController(), screenGroup = it)
         }
     }
 

@@ -1,6 +1,7 @@
 package com.chan.channavigation.ui.navigation
 
 import android.view.View
+import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 
@@ -19,4 +20,21 @@ data class Screen(val screenId: Int, val screenType: ScreenType, val screenName:
 
 enum class ScreenType{
     MAIN, LIST, DETAIL, NAV_DRAWER
+}
+
+/**
+ * Select And Remove Groups
+ */
+fun checkAndRemoveGroup(navController: NavController, screenGroup: String) {
+    navController.backQueue.apply {
+        find { it.destination.route == screenGroup }?.destination?.label?.let { currentScreenGroup ->
+            for (index in (lastIndex - 1) downTo 0) {
+                val navBackStackEntry = this[index]
+                navBackStackEntry.updateState()
+                if(currentScreenGroup == navBackStackEntry.destination.label) {
+                    this.remove(navBackStackEntry)
+                }
+            }
+        }
+    }
 }
