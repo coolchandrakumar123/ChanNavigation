@@ -11,6 +11,10 @@ import com.chan.channavigation.R
 
 class MainFragment : BaseFragment() {
 
+    init {
+        Log.d("ChanLog", "MainFragment: ")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -20,9 +24,9 @@ class MainFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireView().findNavController().backQueue.forEach {
-            Log.d("ChanLog", "MainFragment: ${it.id}, Route: ${it.destination.route} ")
-        }
+        /*requireView().findNavController().backQueue.forEach {
+            Log.d("ChanLog", "MainFragment - Route: ${it.destination.route} ")
+        }*/
         /*requireView().findNavController().currentDestination?.route?.let {
             checkAndRemoveGroup(screenGroup = it)
         }*/
