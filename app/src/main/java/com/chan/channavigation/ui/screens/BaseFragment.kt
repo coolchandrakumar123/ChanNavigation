@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.chan.channavigation.R
-import com.chan.channavigation.ui.UIManager
 import com.chan.channavigation.ui.navigation.Screen
 import com.chan.channavigation.ui.navigation.checkAndRemoveGroup
 import com.chan.channavigation.ui.navigation.navigateTo
@@ -24,7 +23,7 @@ abstract class BaseFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        screen = UIManager.allScreenList.find { it.screenName ==  requireView().findNavController().currentDestination?.route}
+        screen = UIScreens.all.find { it.screenName ==  requireView().findNavController().currentDestination?.route}
         Log.d("ChanLog", "onViewCreated: ${screen?.screenName}")
         requireView().findViewById<Button?>(R.id.button)?.setOnClickListener {
             /*requireActivity().supportFragmentManager.beginTransaction()

@@ -20,53 +20,6 @@ import kotlin.reflect.KClass
  */
 object UIManager {
 
-    val allScreenList = arrayListOf(
-        Screen(
-            screenId = 101,
-            screenType = ScreenType.MAIN,
-            screenName = "KBCategory",
-            screenGroup = "KB",
-            navigation = "KBSubCategory",
-            removeGroup = true,
-            applyPassOn = true
-        ),
-        Screen(
-            screenId = 102,
-            screenType = ScreenType.LIST,
-            screenName = "KBSubCategory",
-            screenGroup = "KB",
-            navigation = "KBDetail"
-        ),
-        Screen(
-            screenId = 103,
-            screenType = ScreenType.DETAIL,
-            screenName = "KBDetail",
-            screenGroup = "KB",
-            navigation = "CommunityCategory"
-        ),
-        Screen(
-            screenId = 104,
-            screenType = ScreenType.MAIN,
-            screenName = "CommunityCategory",
-            screenGroup = "Community",
-            navigation = "CommunitySubCategory"
-        ),
-        Screen(
-            screenId = 105,
-            screenType = ScreenType.LIST,
-            screenName = "CommunitySubCategory",
-            screenGroup = "Community",
-            navigation = "CommunityDetail"
-        ),
-        Screen(
-            screenId = 106,
-            screenType = ScreenType.DETAIL,
-            screenName = "CommunityDetail",
-            screenGroup = "Community",
-            navigation = "KBCategory"
-        ),
-    )
-
     internal fun buildScreens(context: Context, fragmentManager: FragmentManager, @IdRes containerId: Int, startScreen: String?, screenList: ArrayList<Screen>) {
         val navHostFragment = (fragmentManager.findFragmentById(containerId) as? NavHostFragment?)?: kotlin.run {
             NavHostFragment().apply {
