@@ -48,13 +48,6 @@ abstract class BaseFragment: Fragment() {
             }
         }
 
-        /*if(screen?.viaPassOn == true && !viewModel.viaPassOnApplied) {
-            viewModel.viaPassOnApplied = true
-            //passOn
-            requireView().findNavController().backQueue.apply {
-                remove(this[lastIndex-1])
-            }
-        }*/
         //logBackLackRoutes()
     }
 

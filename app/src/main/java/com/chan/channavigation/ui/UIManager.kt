@@ -27,7 +27,8 @@ object UIManager {
             screenName = "KBCategory",
             screenGroup = "KB",
             navigation = "KBSubCategory",
-            removeGroup = true
+            removeGroup = true,
+            applyPassOn = true
         ),
         Screen(
             screenId = 102,
