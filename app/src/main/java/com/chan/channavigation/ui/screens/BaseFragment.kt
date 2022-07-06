@@ -42,6 +42,7 @@ abstract class BaseFragment: Fragment() {
         }
 
         if(screen?.removeGroup == true && !viewModel.removeGroupApplied) {
+            viewModel.removeGroupApplied = true
             requireView().findNavController().currentDestination?.route?.let {
                 checkAndRemoveGroup(navController = requireView().findNavController(), screenGroup = it)
             }
@@ -54,6 +55,10 @@ abstract class BaseFragment: Fragment() {
                 remove(this[lastIndex-1])
             }
         }*/
+        //logBackLackRoutes()
+    }
+
+    private fun logBackLackRoutes() {
         requireView().findNavController().backQueue.forEach {
             Log.d("ChanLog", "Route: ${it.destination.route} ")
         }

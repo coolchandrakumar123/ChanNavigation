@@ -1,16 +1,14 @@
 package com.chan.channavigation.ui
 
+import android.content.Context
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.createGraph
+import androidx.navigation.*
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorDestinationBuilder
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.get
-import com.chan.channavigation.ui.navigation.Screen
-import com.chan.channavigation.ui.navigation.ScreenType
+import com.chan.channavigation.ui.navigation.*
 import com.chan.channavigation.ui.screens.DetailFragment
 import com.chan.channavigation.ui.screens.ListFragment
 import com.chan.channavigation.ui.screens.MainFragment
@@ -29,15 +27,14 @@ object UIManager {
             screenName = "KBCategory",
             screenGroup = "KB",
             navigation = "KBSubCategory",
-            applyPassOn = true
+            removeGroup = true
         ),
         Screen(
             screenId = 102,
             screenType = ScreenType.LIST,
             screenName = "KBSubCategory",
             screenGroup = "KB",
-            navigation = "KBDetail",
-            removeGroup = true
+            navigation = "KBDetail"
         ),
         Screen(
             screenId = 103,
@@ -69,27 +66,27 @@ object UIManager {
         ),
     )
 
-    internal fun buildScreens(fragmentManager: FragmentManager, @IdRes containerId: Int, startScreen: String?, screenList: ArrayList<Screen>) {
-        (fragmentManager.findFragmentById(containerId) as? NavHostFragment?)?.let {
-            prepareNavigation(it, startScreen, screenList)
-        }?: kotlin.run {
-            val navHostFragment = NavHostFragment()
-            fragmentManager.beginTransaction()
-                .replace(containerId, navHostFragment)
-                .commitNow()
-            prepareNavigation(navHostFragment, startScreen, screenList)
+    internal fun buildScreens(context: Context, fragmentManager: FragmentManager, @IdRes containerId: Int, startScreen: String?, screenList: ArrayList<Screen>) {
+        val navHostFragment = (fragmentManager.findFragmentById(containerId) as? NavHostFragment?)?: kotlin.run {
+            NavHostFragment().apply {
+                fragmentManager.beginTransaction()
+                    .replace(containerId, this)
+                    .commitNow()
+            }
         }
+        prepareNavigation(context, fragmentManager, containerId, navHostFragment, startScreen, screenList)
     }
 
-    private fun prepareNavigation(navHostFragment: NavHostFragment, startScreen: String?, screenList: ArrayList<Screen>) {
+    private fun prepareNavigation(context: Context, fragmentManager: FragmentManager, @IdRes containerId: Int, navHostFragment: NavHostFragment, startScreen: String?, screenList: ArrayList<Screen>) {
         val navController = navHostFragment.navController //findNavController(R.id.nav_host_fragment)
         navController.enableOnBackPressed(true)
+        navController.navigatorProvider += AddFragmentNavigator(context, fragmentManager, containerId)
         navController.graph = navController.createGraph(
             startDestination = startScreen?: screenList.first().screenName
         ) {
             //fragment<MainFragment>("mainFragment")
             screenList.forEach { screen ->
-                customFragment(route = screen.screenName, fragmentClass = getFragment(screenType = screen.screenType)) {
+                replaceFragment(route = screen.screenName, fragmentClass = getFragment(screenType = screen.screenType)) {
                     label = screen.screenGroup
                 }
             }
@@ -107,16 +104,4 @@ object UIManager {
         ScreenType.DETAIL -> DetailFragment::class
         ScreenType.NAV_DRAWER -> NavDrawerFragment::class
     }
-
-    private fun NavGraphBuilder.customFragment(
-        route: String,
-        fragmentClass: KClass<out Fragment>,
-        builder: FragmentNavigatorDestinationBuilder.() -> Unit = {}
-    ): Unit = destination(
-        FragmentNavigatorDestinationBuilder(
-            provider[FragmentNavigator::class],
-            route,
-            fragmentClass
-        ).apply(builder)
-    )
 }

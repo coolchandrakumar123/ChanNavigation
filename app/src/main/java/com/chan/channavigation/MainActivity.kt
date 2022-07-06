@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        UIManager.buildScreens(supportFragmentManager, R.id.container, "KBNavDrawer", screenList = arrayListOf(
+        UIManager.buildScreens(this, supportFragmentManager, R.id.container, "KBNavDrawer", screenList = arrayListOf(
             Screen(
             screenId = 1011,
             screenType = ScreenType.NAV_DRAWER,
@@ -21,10 +21,5 @@ class MainActivity : AppCompatActivity() {
             navigation = "KBCategory"
         )
         ))
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        Log.d("ChanLog", "Activity: onBackPressed ")
     }
 }
