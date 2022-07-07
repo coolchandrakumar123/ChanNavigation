@@ -40,7 +40,10 @@ object UIManager {
         ) {
             //fragment<MainFragment>("mainFragment")
             screenList.forEach { screen ->
-                replaceFragment(route = screen.screenName, fragmentClass = getFragment(screenType = screen.screenType)) {
+                /*replaceFragment(route = screen.screenName, fragmentClass = getFragment(screenType = screen.screenType)) {
+                    label = screen.screenGroup
+                }*/
+                addFragment(route = screen.screenName, fragmentClass = getFragment(screenType = screen.screenType)) {
                     label = screen.screenGroup
                 }
             }

@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        UIManager.buildScreens(this, supportFragmentManager, R.id.container, "KBNavDrawer", UIScreens.navDrawer)
+        UIManager.buildScreens(this, supportFragmentManager, R.id.container, "KBCategory", UIScreens.all)
     }
 }

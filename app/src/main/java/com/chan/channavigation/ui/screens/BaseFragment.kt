@@ -36,7 +36,11 @@ abstract class BaseFragment: Fragment() {
         if(screen?.applyPassOn == true && !viewModel.passOnApplied) {
             viewModel.passOnApplied = true
             //passOn
-            requireView().findNavController().backQueue.removeLastOrNull()
+            requireView().findNavController().backQueue.lastOrNull()?.let {
+                Log.d("ChanLog", "passOn: ${it.destination.route}")
+                requireView().findNavController().backQueue.remove(it)
+                //requireView().findNavController().navigatorProvider.getNavigator<AddFragmentNavigator>("add_fragment").popBackStack(it)
+            }
             navigateToNextDestination()
         }
 
@@ -47,16 +51,16 @@ abstract class BaseFragment: Fragment() {
             }
         }
 
-        //logBackLackRoutes()
+        logBackLackRoutes()
     }
 
     private fun logBackLackRoutes() {
         requireView().findNavController().backQueue.forEach {
-            Log.d("ChanLog", "Route: ${it.destination.route} ")
+            Log.d("ChanLog", "BackQueue, Route: ${it.destination.route} ")
         }
     }
 
-    fun navigateToNextDestination() {
+    open fun navigateToNextDestination() {
         /*requireView().navigateTo(
             route = "listFragment"
         )*/

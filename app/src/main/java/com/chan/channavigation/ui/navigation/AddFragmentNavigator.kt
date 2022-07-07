@@ -72,6 +72,7 @@ class AddFragmentNavigator(
             )
             return
         }
+        Log.d("ChanLog", "popBackStack: AddFragmentNavigator $savedState")
         if (savedState) {
             val beforePopList = state.backStack.value
             val initialEntry = beforePopList.first()
@@ -204,7 +205,8 @@ class AddFragmentNavigator(
         ft.add(containerId, frag)
         //ft.addToBackStack(entry.id)
 
-        //ft.replace(containerId, frag) default flow
+        //default flow
+        //ft.replace(containerId, frag)
         ft.setPrimaryNavigationFragment(frag)
         @IdRes val destId = destination.id
         // TODO Build first class singleTop behavior for fragments
