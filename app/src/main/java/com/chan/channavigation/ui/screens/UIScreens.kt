@@ -14,7 +14,7 @@ object UIScreens {
             screenName = "KBCategory",
             screenGroup = "KB",
             navigation = "KBSubCategory",
-            applyPassOn = true
+            removeGroup = true
         ),
         Screen(
             screenId = 102,

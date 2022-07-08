@@ -100,6 +100,7 @@ class AddFragmentNavigator(
                 FragmentManager.POP_BACK_STACK_INCLUSIVE
             )
         }
+        //fragmentManager.beginTransaction().remove(fragmentManager.fragments[1]).commitAllowingStateLoss()
         state.pop(popUpTo, savedState)
     }
 
