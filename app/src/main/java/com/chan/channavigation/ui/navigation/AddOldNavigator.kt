@@ -15,10 +15,10 @@ import java.util.*
 
 
 @Navigator.Name("radar_add_fragment")
-class RadarNavigator(
+class AddOldNavigator(
     private val mContext: Context, private val mFragmentManager: FragmentManager,
     private val mContainerId: Int
-) : Navigator<RadarNavigator.Destination>() {
+) : Navigator<AddOldNavigator.Destination>() {
     private val mBackStack = ArrayDeque<Int>()
 
     /**
@@ -277,8 +277,8 @@ class RadarNavigator(
          * will be associated with.
          */
         constructor(navigatorProvider: NavigatorProvider) : this(
-            navigatorProvider.getNavigator<RadarNavigator>(
-                RadarNavigator::class.java!!
+            navigatorProvider.getNavigator<AddOldNavigator>(
+                AddOldNavigator::class.java!!
             )
         ) {
         }

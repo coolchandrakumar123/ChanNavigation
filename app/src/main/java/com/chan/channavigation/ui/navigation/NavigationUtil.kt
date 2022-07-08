@@ -118,8 +118,8 @@ class AddFragmentNavigatorDestinationBuilder :
  * DSL for constructing a new [FragmentNavigator.Destination]
  */
 @NavDestinationDsl
-class RadarFragmentNavigatorDestinationBuilder :
-    NavDestinationBuilder<RadarNavigator.Destination> {
+class AddOldNavigatorDestinationBuilder :
+    NavDestinationBuilder<AddOldNavigator.Destination> {
 
     private var fragmentClass: KClass<out Fragment>
 
@@ -139,7 +139,7 @@ class RadarFragmentNavigatorDestinationBuilder :
         )
     )
     public constructor(
-        navigator: RadarNavigator,
+        navigator: AddOldNavigator,
         @IdRes id: Int,
         fragmentClass: KClass<out Fragment>
     ) : super(navigator, id) {
@@ -147,7 +147,7 @@ class RadarFragmentNavigatorDestinationBuilder :
     }
 
     /**
-     * DSL for constructing a new [RadarNavigator.Destination]
+     * DSL for constructing a new [AddOldNavigator.Destination]
      *
      * @param navigator navigator used to create the destination
      * @param route the destination's unique route
@@ -155,14 +155,14 @@ class RadarFragmentNavigatorDestinationBuilder :
      * destination
      */
     public constructor(
-        navigator: RadarNavigator,
+        navigator: AddOldNavigator,
         route: String,
         fragmentClass: KClass<out Fragment>
     ) : super(navigator, route) {
         this.fragmentClass = fragmentClass
     }
 
-    override fun build(): RadarNavigator.Destination =
+    override fun build(): AddOldNavigator.Destination =
         super.build().also { destination ->
             destination.setClassName(fragmentClass.java.name)
         }
