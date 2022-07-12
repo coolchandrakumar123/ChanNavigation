@@ -46,7 +46,7 @@ abstract class BaseFragment: Fragment() {
 
         if(screen?.removeGroup == true && !viewModel.removeGroupApplied) {
             viewModel.removeGroupApplied = true
-            requireView().findNavController().currentDestination?.route?.let {
+            requireView().findNavController().currentDestination?.label?.toString()?.let {
                 checkAndRemoveGroup(navController = requireView().findNavController(), screenGroup = it)
             }
         }

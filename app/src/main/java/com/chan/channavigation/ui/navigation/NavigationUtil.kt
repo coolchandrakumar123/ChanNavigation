@@ -47,13 +47,12 @@ fun View.navigateTo(route: String) {
  */
 fun checkAndRemoveGroup(navController: NavController, screenGroup: String) {
     navController.backQueue.apply {
-        find { it.destination.route == screenGroup }?.destination?.label?.let { currentScreenGroup ->
-            for (index in (lastIndex - 1) downTo 0) {
-                val navBackStackEntry = this[index]
-                navBackStackEntry.updateState()
-                if(currentScreenGroup == navBackStackEntry.destination.label) {
-                    this.remove(navBackStackEntry)
-                }
+        for (index in (lastIndex - 1) downTo 0) {
+            val navBackStackEntry = this[index]
+            //navBackStackEntry.updateState()
+            if(navBackStackEntry.destination.label == screenGroup) {
+                this.remove(navBackStackEntry)
+                navController.navigatorProvider.getNavigator<AddFragmentNavigator>("add_fragment").popGroup(screenGroup = screenGroup, index = index)
             }
         }
     }

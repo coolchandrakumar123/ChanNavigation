@@ -31,6 +31,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.NavigatorProvider
+import com.chan.channavigation.ui.screens.BaseFragment
 
 /**
  * Navigator that navigates through [fragment transactions][FragmentTransaction]. Every
@@ -102,6 +103,13 @@ class AddFragmentNavigator(
         }
         //fragmentManager.beginTransaction().remove(fragmentManager.fragments[1]).commitAllowingStateLoss()
         state.pop(popUpTo, savedState)
+    }
+
+    fun popGroup(screenGroup: String, index: Int) {
+        (fragmentManager.fragments[index] as? BaseFragment?)?.let { fragment ->
+            Log.d("ChanLog", "popGroup: ${fragment.screen?.screenGroup}")
+            fragmentManager.beginTransaction().remove(fragment).commit()
+        }
     }
 
     public override fun createDestination(): Destination {

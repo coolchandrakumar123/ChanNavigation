@@ -5,9 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import com.chan.channavigation.R
-import com.chan.channavigation.ui.navigation.checkAndRemoveGroup
 
 
 class MainFragment : BaseFragment() {
